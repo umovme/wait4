@@ -1,6 +1,6 @@
 # wait4
 
-This project is a simple utility to wait for a `open port`.
+This project is a simple utility to wait for a `open port` and|or a `command`.
 
 >**This is a working in progress...**
 
