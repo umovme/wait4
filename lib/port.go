@@ -8,7 +8,7 @@ import (
 
 // PortCheck check if a local port is open
 // timeout are provide in duration.
-func PortCheck(port int, timeout time.Duration) (listen bool, err error) {
+func PortCheck(port int, timeout time.Duration) (bool, error) {
 
 	conn, err := net.DialTimeout("tcp", fmt.Sprintf(":%d", port), timeout)
 	if conn != nil {
