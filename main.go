@@ -8,7 +8,7 @@ import (
 	"github.com/sebastianwebber/wait4/lib"
 )
 
-const currentVersion = "0.1.1"
+const currentVersion = "0.2.0"
 
 func usage() {
 	fmt.Printf("Usage: wait4 --port=[port number] [options] \n\n")
