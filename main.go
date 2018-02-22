@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/sebastianwebber/wait4/lib"
@@ -16,18 +17,32 @@ func usage() {
 	flag.PrintDefaults()
 }
 
-func main() {
+var (
+	portNumber  *int
+	interval    *time.Duration
+	command     *string
+	showVersion *bool
+)
+
+func processArgs() {
+
 	flag.Usage = usage
 
-	portNumber := flag.Int("port", 0, "port name to check")
-	interval := flag.Duration("interval", 1*time.Second, "time for each check")
-	showVersion := flag.Bool("version", false, "Print version information and quit")
+	portNumber = flag.Int("port", 0, "port name to check")
+	command = flag.String("command", "", "port name to check")
+	interval = flag.Duration("interval", 1*time.Second, "time for each check")
+	showVersion = flag.Bool("version", false, "Print version information and quit")
 	flag.Parse()
 
 	if *showVersion {
 		fmt.Printf("wait4 v%s\n", currentVersion)
-		return
+		os.Exit(0)
 	}
+}
+
+func main() {
+
+	processArgs()
 
 	c := time.Tick(*interval)
 	for range c {
