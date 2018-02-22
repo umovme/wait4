@@ -1,0 +1,36 @@
+# .goreleaser.yml
+# Build customization
+builds:
+  - binary: wait4 
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - 386
+      - amd64
+
+# Archive customization
+archive:
+  format: tgz
+  replacements:
+    386: 32-bit
+    amd64: 64-bit
+
+    darwin: macOS
+  files:
+    - config.toml
+
+
+fpm:
+  vendor: Sebastian Webber
+  homepage: https://swebber.me
+
+  maintainer: Sebastian Webber <sebastian@swebber.me>
+
+  description: this tool waits for a process listen
+  
+  # Formats to generate as output
+  formats:
+    - rpm
+    - deb
