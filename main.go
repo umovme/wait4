@@ -11,12 +11,6 @@ import (
 
 const currentVersion = "0.2.0"
 
-func usage() {
-	fmt.Printf("Usage: wait4 --port=[port number] [options] \n\n")
-	fmt.Println("Options:")
-	flag.PrintDefaults()
-}
-
 var (
 	portNumber  *int
 	interval    *time.Duration
@@ -25,8 +19,11 @@ var (
 )
 
 func processArgs() {
-
-	flag.Usage = usage
+	flag.Usage = func() {
+		fmt.Printf("Usage: wait4 --port=[port number] [options] \n\n")
+		fmt.Println("Options:")
+		flag.PrintDefaults()
+	}
 
 	portNumber = flag.Int("port", 0, "port name to check")
 	command = flag.String("command", "", "port name to check")
