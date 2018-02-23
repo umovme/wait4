@@ -11,7 +11,7 @@ func TestCmdCheck(t *testing.T) {
 		want    bool
 		wantErr bool
 	}{
-		{name: "ok echo", cmd: "echo hello", want: true, wantErr: false},
+		{name: "ok echo", cmd: "echo 'hello world'", want: true, wantErr: false},
 		{name: "exit with the error code", cmd: "exit 2", want: false, wantErr: true},
 	}
 	for _, tt := range tests {

@@ -1,8 +1,6 @@
 package lib
 
 import (
-	"strings"
-
 	"github.com/sebastianwebber/cmdr"
 )
 
@@ -10,8 +8,7 @@ import (
 // the main idea its run command into a running server and
 // validate if it is running
 func CmdCheck(cmd string) (bool, []byte, error) {
-	cmdParts := strings.Split(cmd, " ")
-	output, err := cmdr.New(false, cmdParts[0], cmdParts[1:len(cmdParts)]...).Run()
+	output, err := cmdr.Parse(cmd).Run()
 
 	return err == nil, output, err
 }
