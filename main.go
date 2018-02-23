@@ -10,7 +10,7 @@ import (
 	"github.com/sebastianwebber/wait4/lib"
 )
 
-const currentVersion = "0.3.0"
+const currentVersion = "0.3.1"
 
 var (
 	portNumber  *int
