@@ -7,10 +7,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/sebastianwebber/wait4/lib"
+	"github.com/umovme/wait4/lib"
 )
 
-const currentVersion = "0.3.1"
+const currentVersion = "0.4.0"
 
 var (
 	portNumber  *int
@@ -22,7 +22,7 @@ var (
 
 func processArgs() {
 	flag.Usage = func() {
-		fmt.Printf("Usage: wait4 --port=[port number] [options] \n\n")
+		fmt.Printf("Usage: wait4 [options] \n\n")
 		fmt.Println("Options:")
 		flag.PrintDefaults()
 	}
