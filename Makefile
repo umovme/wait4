@@ -1,4 +1,7 @@
 tools:
 	go get -u -v github.com/goreleaser/goreleaser
-deploy:
+	go get -u -v github.com/golang/dep/cmd/dep
+dependencies: 
+	dep ensure
+deploy: dependencies
 	goreleaser --rm-dist
