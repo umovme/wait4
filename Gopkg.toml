@@ -29,6 +29,10 @@
   name = "github.com/sebastianwebber/cmdr"
   version = "0.2.0"
 
+[[constraint]]
+  name = "github.com/go-playground/log"
+  version = "5.0.2"
+
 [prune]
   go-tests = true
   unused-packages = true

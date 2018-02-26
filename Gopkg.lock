@@ -2,6 +2,27 @@
 
 
 [[projects]]
+  name = "github.com/go-playground/ansi"
+  packages = ["."]
+  revision = "777788a9be1a7296979a999c86b251fc777077a9"
+  version = "v2.1.0"
+
+[[projects]]
+  name = "github.com/go-playground/log"
+  packages = [
+    ".",
+    "handlers/console"
+  ]
+  revision = "c2be0ef209f5b1ee5dde0c95993cfac63abff1db"
+  version = "v5.0.2"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
+[[projects]]
   name = "github.com/sebastianwebber/cmdr"
   packages = ["."]
   revision = "302ba52ffa7e5de62dd35074635b3785cffc98e3"
@@ -10,6 +31,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "07be161bf01122226313a69fa21b55f761e81a3e685eb03659ea62696d5adc7c"
+  inputs-digest = "ceb9136740774b4770ed3bda7982d3831071090fe4ddf69c7050bb124045737f"
   solver-name = "gps-cdcl"
   solver-version = 1

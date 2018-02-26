@@ -3,14 +3,16 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"time"
+
+	"github.com/go-playground/log"
+	"github.com/go-playground/log/handlers/console"
 
 	"github.com/umovme/wait4/lib"
 )
 
-const currentVersion = "0.4.0"
+const currentVersion = "0.5.0"
 
 var (
 	portNumber  *int
@@ -18,9 +20,20 @@ var (
 	timeout     *time.Duration
 	command     *string
 	showVersion *bool
+	debugMode   *bool
+	logLevels   = []log.Level{
+		log.InfoLevel,
+		log.NoticeLevel,
+		log.WarnLevel,
+		log.ErrorLevel,
+		log.PanicLevel,
+		log.AlertLevel,
+		log.FatalLevel,
+	}
 )
 
 func processArgs() {
+
 	flag.Usage = func() {
 		fmt.Printf("Usage: wait4 [options] \n\n")
 		fmt.Println("Options:")
@@ -32,6 +45,7 @@ func processArgs() {
 	interval = flag.Duration("interval", 1*time.Second, "time for each check")
 	timeout = flag.Duration("timeout", 5*time.Second, "timeout for a port or command check")
 	showVersion = flag.Bool("version", false, "Print version information and quit")
+	debugMode = flag.Bool("debug", false, "show debug messages")
 	flag.Parse()
 
 	if *showVersion {
@@ -39,11 +53,19 @@ func processArgs() {
 		os.Exit(0)
 	}
 
+	if *debugMode {
+		logLevels = append(logLevels, log.DebugLevel)
+	}
+
+	log.Debugf("%#v", *debugMode)
+
+	cLog := console.New(true)
+	log.AddHandler(cLog, logLevels...)
 }
 
 func main() {
-
 	processArgs()
+	defer log.WithTrace().Info("Done.")
 
 	var (
 		checkPort    bool
@@ -55,9 +77,9 @@ func main() {
 	if *portNumber > 0 {
 		for range c {
 			checkPort, _ = lib.PortCheck(*portNumber, *timeout)
-			log.Printf("Waiting for %d port...\n", *portNumber)
+			log.Infof("Waiting for %d port...", *portNumber)
 			if checkPort {
-				log.Printf("%d port is listenning!\n", *portNumber)
+				log.Infof("%d port is listenning!", *portNumber)
 				break
 			}
 		}
@@ -68,14 +90,12 @@ func main() {
 		for range c {
 			checkCommand, out, err = lib.CmdCheck(*command)
 			if err != nil {
-				log.Printf("%s returns:\n%s%s\n", *command, string(out), err.Error())
+				log.Infof("%s returns:\n%s%s", *command, string(out), err.Error())
 			}
 			if checkCommand {
-				log.Printf("Command '%s' returns without error.\n", *command)
+				log.Infof("Command '%s' returns without error.", *command)
 				break
 			}
 		}
 	}
-
-	log.Println("Done.")
 }

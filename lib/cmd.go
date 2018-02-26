@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"github.com/go-playground/log"
 	"github.com/sebastianwebber/cmdr"
 )
 
@@ -8,7 +9,12 @@ import (
 // the main idea its run command into a running server and
 // validate if it is running
 func CmdCheck(cmd string) (bool, []byte, error) {
-	output, err := cmdr.Parse(cmd).Run()
+
+	command := cmdr.Parse(cmd)
+	log.Debugf("%#v", command)
+
+	output, err := command.Run()
+	log.Debugf("%#v", string(output))
 
 	return err == nil, output, err
 }
