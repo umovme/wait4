@@ -15,13 +15,14 @@ import (
 const currentVersion = "0.6.0"
 
 var (
-	portNumber  *int
-	interval    *time.Duration
-	timeout     *time.Duration
-	command     *string
-	showVersion *bool
-	debugMode   *bool
-	logLevels   = []log.Level{
+	portNumber       *int
+	interval         *time.Duration
+	timeout          *time.Duration
+	command          *string
+	showVersion      *bool
+	debugMode        *bool
+	useShellTerminal *bool
+	logLevels        = []log.Level{
 		log.InfoLevel,
 		log.NoticeLevel,
 		log.WarnLevel,
@@ -46,6 +47,7 @@ func processArgs() {
 	timeout = flag.Duration("timeout", 5*time.Second, "timeout for a port or command check")
 	showVersion = flag.Bool("version", false, "Print version information and quit")
 	debugMode = flag.Bool("debug", false, "show debug messages")
+	useShellTerminal = flag.Bool("use-shell", false, "use a shell when running a command")
 	flag.Parse()
 
 	if *showVersion {
@@ -88,7 +90,7 @@ func main() {
 	if *command != "" {
 		var out []byte
 		for range c {
-			checkCommand, out, err = lib.CmdCheck(*command)
+			checkCommand, out, err = lib.CmdCheck(*command, *useShellTerminal)
 			if err != nil {
 				log.Infof("%s returns:\n%s%s", *command, string(out), err.Error())
 			}

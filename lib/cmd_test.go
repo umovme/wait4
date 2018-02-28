@@ -16,7 +16,7 @@ func TestCmdCheck(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, _, err := CmdCheck(tt.cmd)
+			got, _, err := CmdCheck(tt.cmd, false)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("CmdCheck() error = %v, wantErr %v", err, tt.wantErr)
 				return

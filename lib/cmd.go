@@ -8,10 +8,12 @@ import (
 // CmdCheck runs a command to check if the service is running
 // the main idea its run command into a running server and
 // validate if it is running
-func CmdCheck(cmd string) (bool, []byte, error) {
+func CmdCheck(cmd string, enableShell bool) (bool, []byte, error) {
 
 	command := cmdr.Parse(cmd)
 	log.Debugf("%#v", command)
+
+	command.Options.UseShell = enableShell
 
 	output, err := command.Run()
 	log.Debugf("%#v", string(output))
