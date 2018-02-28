@@ -12,7 +12,7 @@ import (
 	"github.com/umovme/wait4/lib"
 )
 
-const currentVersion = "0.6.0"
+const currentVersion = "0.7.0"
 
 var (
 	portNumber       *int
