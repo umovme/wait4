@@ -25,12 +25,12 @@
 [[projects]]
   name = "github.com/sebastianwebber/cmdr"
   packages = ["."]
-  revision = "302ba52ffa7e5de62dd35074635b3785cffc98e3"
-  version = "0.2.0"
+  revision = "61f393d7bd59dca5e09e0bce95c57d7d9511732c"
+  version = "0.2.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "ceb9136740774b4770ed3bda7982d3831071090fe4ddf69c7050bb124045737f"
+  inputs-digest = "cf2c519ded4ad4be8cd9c05faae8468ba3b568a9156abd69fb29f6e289629fa4"
   solver-name = "gps-cdcl"
   solver-version = 1
